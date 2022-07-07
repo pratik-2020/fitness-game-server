@@ -32,7 +32,7 @@ mongoose.connect(db, {
 .catch((err) => {
     console.log(err.message);
 })
-app.post('/', (req, res) => {
+app.get('/', (req, res) => {
     res.send('Welcome');
 });
 app.post('/adduser', (req, res) => {
