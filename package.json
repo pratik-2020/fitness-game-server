@@ -1,0 +1,21 @@
+{
+  "name": "climate-change-game-server",
+  "version": "1.0.0",
+  "description": "Server of climate change game",
+  "main": "server.js",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "mongoose": "^6.4.0",
+    "nodemailer": "^6.7.6",
+    "otp-generator": "^4.0.0",
+    "yargs": "^17.5.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server --port $PORT"
+  },
+  "author": "Pratiksingh Rajeshsingh Thakur",
+  "license": "ISC"
+}
