@@ -13,7 +13,7 @@ const otpCreation = (req, res) => {
         res.send('User already exist');
       }
       else{
-        const otp = otpgen(6, { upperCaseAlphabets: false, specialChars: false, lowerCaseAlphabets: false });
+        const otp = otpgen.generate(6, { upperCaseAlphabets: false, specialChars: false, lowerCaseAlphabets: false });
         let otpm = new otpModel();
         otpm.user = name;
         otpm.email = email;

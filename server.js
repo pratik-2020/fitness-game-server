@@ -57,6 +57,7 @@ app.post('/replyjoinreq', (req, res) => {
     replyJoinReq(req, res);
 });
 app.post('/otpcreation', (req, res) => {
+    console.log(req);
     otpCreation(req, res);
 });
 app.post('/otpverification', (req, res) => {
