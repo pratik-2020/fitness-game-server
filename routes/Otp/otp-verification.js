@@ -6,6 +6,7 @@ const otpVerification = (req,res) => {
     otpModel.find({
         email: email
     }).then((response) => {
+        console.log(response);
         if(response[0].otp === otp){
             res.send('User can proceed!!');
         }

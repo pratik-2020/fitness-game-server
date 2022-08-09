@@ -16,6 +16,26 @@ const groupSchema = mongoose.Schema({
     admin: {
         type: String,
         required: true
+    },
+    weekGoal: {
+        type: Array,
+        required: true
+    },
+    points: {
+        type: Number, 
+        required: true
+    },
+    stat: {
+        type: String,
+        required: true
+    },
+    steps: {
+        type: String,
+        required: true
+    },
+    session: {
+        type: String,
+        required: true
     }
 });
 

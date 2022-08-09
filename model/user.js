@@ -5,10 +5,6 @@ const userSchema = mongoose.Schema({
         type: String, 
         required: true
     },
-    gender: {
-        type: String,
-        required: true
-    },
     usertype: {
         type: String,
         required: true
@@ -22,6 +18,18 @@ const userSchema = mongoose.Schema({
         required: true
     },
     email: {
+        type: String,
+        required: true
+    },
+    goals: {
+        type: Array,
+        required: true
+    },
+    steps: {
+        type: Number,
+        required: true
+    },
+    point:{
         type: String,
         required: true
     }

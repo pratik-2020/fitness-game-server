@@ -28,7 +28,7 @@ const otpCreation = (req, res) => {
                     service: 'gmail',
                     auth: {
                       user: 'capture31122021@gmail.com',
-                      pass: 'Capture@123'
+                      pass: 'wpliwxuypjdenywk'
                     }
                   });
                   

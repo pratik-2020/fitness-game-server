@@ -10,12 +10,15 @@ const createGroup = (req, res) => {
     groupm.users = users;
     groupm.grpid = grpid;
     groupm.currentLevel = "0";
+    groupm.admin = email;
+    groupm.weekGoal = req.body.goal;
+    groupm.stat = "A";
     groupm.save((err, data) => {
         if(err){
-            res.send(err.message);
+            res.send('Error occoured');
         }
         else{
-            res.send('Group created successfully!!'+grpid);
+            res.send(grpid);
         }
     })
 }

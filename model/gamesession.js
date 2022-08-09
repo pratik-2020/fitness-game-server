@@ -1,21 +1,33 @@
 const mongoose = require('mongoose');
 
 const gamesessionSchema = mongoose.Schema({
-    name: {
+    grpid: {
+        type: String,
+        reqquired: true
+    },
+    week_start_date: {
+        type: Date,
+        required: true
+    },
+    week_goal: {
         type: String,
         required: true
     },
-    userid: {
-        type: String,
+    total_achieved_steps: {
+        type: Number,
+        required: true,
+    },
+    total_points: {
+        type: Number,
         required: true
     },
-    usertype: {
-        type: String,
+    individual_contribution: {
+        type: Array,
         required: true
     },
-    que1: {
+    current_checkpoint: {
         type: String,
-        required: false
+        required: true
     }
 });
 
