@@ -11,9 +11,11 @@ const otpVerification = (req,res) => {
             res.send('User can proceed!!');
         }
         else{
-            res.send('Invalid otp!!');
+            res.send(response.otp);
         }
-    })
+    }).catch(err => {
+        res.send(err);
+    }) 
 }
 
 module.exports = otpVerification;
