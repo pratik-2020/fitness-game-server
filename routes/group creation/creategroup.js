@@ -31,7 +31,7 @@ const createGroup = (req, res) => {
             gamem.current_checkpoint="0";
             gamem.save((er, dt) => {
                 if(er){
-                    res.send(er);
+                    res.send("Error");
                 }
                 else{
                     groupsessionModel.find({
@@ -56,13 +56,13 @@ const createGroup = (req, res) => {
                             }).then((rep2) => {
                                 res.send({grpid});
                             }).catch((err) => {
-                                res.send(err);
+                                res.send(err.message);
                             })
                         }).catch((err1) => {
-                            res.send(err1);
+                            res.send(err1.message);
                         })
                     }).catch((err2) => {
-                        res.send(err2);
+                        res.send(err2.message);
                     })
                 }
             })
