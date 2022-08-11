@@ -18,7 +18,7 @@ const groupSchema = mongoose.Schema({
         required: true
     },
     weekGoal: {
-        type: Array,
+        type: String,
         required: true
     },
     points: {
