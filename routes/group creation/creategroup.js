@@ -50,7 +50,7 @@ const createGroup = (req, res) => {
                                 admin:rep1.admin,
                                 weekGoal:rep1.weekGoal,
                                 stat:rep1.stat,
-                                session:rep._id,
+                                session:""+rep._id,
                                 points:0,
                                 steps:"0"
                             }).then((rep2) => {
