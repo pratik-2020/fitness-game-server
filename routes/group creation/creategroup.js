@@ -77,7 +77,7 @@ const gamesessionModel = require('../../model/gamesession');
 
 const createGroup = (req, res) => {
     const email = req.body.email;
-    const users = [email];
+    const users = [[email, 'Accepted']];
     const grpid = ""+ email + new Date().getDate() + new Date().getTime();
     let groupm = new groupModel();
     groupm.users = users;
