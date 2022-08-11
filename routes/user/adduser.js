@@ -15,6 +15,7 @@ const adduser = (req, res) => {
     userm.password = password;
     userm.steps = steps;
     userm.goals = [];
+    userm.point = 0;
     userm.save((err, data) => {
         if(err){
             res.send(err);
