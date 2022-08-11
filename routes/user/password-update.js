@@ -20,7 +20,10 @@ const passUpdate = (req, res) => {
                 usertype: response[0].usertype,
                 grpid: response[0].grpid,
                 _id: response[0]._id
-            }).catch((er) => {
+            }).then((rep) => {
+                res.send('Password updated');
+            })
+            .catch((er) => {
                 res.send(er.message);
             })
         }

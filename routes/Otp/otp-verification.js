@@ -7,7 +7,7 @@ const otpVerification = (req,res) => {
         email: email
     }).then((response) => {
         console.log(response);
-        if(response[0].otp === otp){
+        if(response.otp === otp){
             res.send('User can proceed!!');
         }
         else{

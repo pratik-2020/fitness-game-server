@@ -3,7 +3,7 @@ const gameSessionModel = require('../../model/gamesession');
 const creategamesession = (req, res) => {
     const grpid = req.body.grpid;
     const week_goal = req.body.week_goal;
-    const week_start_date = req.body.week;
+    const week_start_date = new Date().getDate();
     const total_achieved_steps = req.body.total_achieved_steps;
     const total_points = req.body.total_points;
     const current_checkpoint = req.body.current_checkpoint;
