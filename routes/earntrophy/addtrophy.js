@@ -26,7 +26,7 @@ const addTrophy = (req, res) => {
                 gamem.total_points = 0
                 gamem.individual_contribution = [];
                 gamem.current_checkpoint = response[0].currentLevel;
-                gamem.save(async (er, dt) => {
+                gamem.save((er, dt) => {
                     if(er){
                         res.send(er);
                     }
@@ -35,7 +35,7 @@ const addTrophy = (req, res) => {
                             grpid: grpid,
                             current_checkpoint: response[0].currentLevel
                         }).then((re) => {
-                            await groupModel.updateOne({
+                             groupModel.updateOne({
                                 grpid: grpid
                             }, {
                                 _id: response[0]._id,
