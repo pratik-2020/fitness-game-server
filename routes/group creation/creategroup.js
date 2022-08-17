@@ -116,16 +116,16 @@ const createGroup = (req, res) => {
                             groupModel.updateOne({
                                 grpid: grpid
                             }, {
-                                _id: rep._id,
-                                users: rep.users,
-                                currentLevel: rep.currentLevel,
-                                grpid: rep.grpid,
+                                _id: rep[0]._id,
+                                users: rep[0].users,
+                                currentLevel: rep[0].currentLevel,
+                                grpid: rep[0].grpid,
                                 admin:email,
-                                weekGoal:rep.weekGoal,
-                                points:rep.points,
-                                stat: rep.stat,
-                                steps:rep.steps,
-                                session: response._id
+                                weekGoal:rep[0].weekGoal,
+                                points:rep[0].points,
+                                stat: rep[0].stat,
+                                steps:rep[0].steps,
+                                session: response[0]._id
                             }).then((rep1) => {
                                 res.send({grpid});
                             }).catch((err) => {

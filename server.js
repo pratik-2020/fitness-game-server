@@ -21,6 +21,7 @@ const bodyParser = require('body-parser');
 const queryPArse = require('query-string');
 const app = express();
 const request = require('request');
+const addtrophy = require('./routes/earntrophy/addtrophy');
 const { google, indexing_v3 } = require('googleapis');
 const tokenModel = require('./model/token');
 const { default: axios } = require('axios');
@@ -37,6 +38,13 @@ const groupModel = require('./model/group');
 const gamesessionModel = require('./model/gamesession');
 const userModel = require('./model/user');
 const gameSessionModel = require('./model/gamesession');
+const retGarden = require('./routes/garden store/retrieve-garden-store');
+const createGarden = require('./routes/garden store/create-garden-store');
+const addItem = require('./routes/garden store/add-item');
+const retTrophy = require('./routes/earntrophy/retrievetrophy');
+const changeLeader = require('./routes/garden store/change-leader');
+const setCustom = require('./routes/group creation/set-custom');
+const verifyTrophy = require('./routes/earntrophy/verifytrophy');
 app.use(express.json());
 app.use(cors({
     origin: '*',
@@ -419,6 +427,9 @@ app.get('/leaderboard',(req, res) => {
 })
 app.post('/sendnotification', (req, res) => {
     sendNotification(req, res);
+});
+app.post('/changeleader', (req, res) => {
+    changeLeader(req, res);
 })
 app.post('/seeennotification', (req,res) => {
     seenNotification(req,res);
@@ -428,16 +439,31 @@ app.post('/adduser', (req, res) => {
 })
 app.post('/creategroup', (req, res) => {
     createGroup(req, res);
+});
+app.post('/setcustom', (req, res) => {
+    setCustom(req, res);
 })
 app.post('/joingroup', (req, res) => {
     joinGroup(req, res);
+});
+app.post('/verifytrophy', (req, res) => {
+    verifyTrophy(req, res);
 })
 app.post('/updategroup', (req, res) => {
     updateGroup(req, res);
 });
 app.post('/updatepass', (req, res) => {
     passUpdate(req, res);
-})
+});
+app.post('/retgarden', (req, res) => {
+    retGarden(req, res);
+});
+app.post('/creategarden', (req, res) => {
+    createGarden(req, res);
+});
+app.post('/additem', (req, res) => {
+    addItem(req, res);
+});
 app.post('/retuserdata', (req, res) => {
     retUserData(req, res);
 })
@@ -450,6 +476,12 @@ app.post('/login', (req, res) => {
 app.post('/replyjoinreq', (req, res) => {
     replyJoinReq(req, res);
 });
+app.post('/addtrophy', (req, res) => {
+    addtrophy(req, res);
+});
+app.post('/rettrophy', (req, res) => {
+    retTrophy(req, res);
+})
 app.post('/otpcreation', (req, res) => {
     console.log(req);
     otpCreation(req, res);
