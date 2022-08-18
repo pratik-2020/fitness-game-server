@@ -1,5 +1,7 @@
 const gardenstoreModel = require('../../model/gardenstore');
-
+const gamesessionModel = require('../../model/gamesession');
+const groupModel = require('../../model/group');
+const userModel = require('../../model/user');
 const addItem = (req, res) => {
     const grpid = req.body.id;
     const itemname = req.body.itemname;
@@ -24,7 +26,54 @@ const addItem = (req, res) => {
                 bag: response[0].bag,
                 flower: response[0].flower
             }).then((rep) => {
-                res.send('Item addedd successfully');
+                groupModel.find({
+                    grpid: grpid
+                }).then((rsp1) => {
+                    groupModel.updateOne({
+                        grpid: grpid
+                    }, {
+                        _id: rsp1[0]._id,
+                        grpdi: grpid,
+                        users: rsp1[0].users,
+                        currentLevel: rsp1[0].currentLevel,
+                        grpid: grpid,
+                        admin: rsp1[0].admin,
+                        weekGoal: rsp1[0].weekGoal,
+                        points:(rsp1[0].points - quantity),
+                        stat: rsp1[0].stat,
+                        steps: rsp1[0].steps,
+                        session: rsp1[0].session
+                    }).then((rsp2) => {
+                        gamesessionModel.find({
+                            grpid: grpid,
+                            current_checkpoint: rsp1[0].currentLevel
+                        }).then((rsp3) => {
+                            gamesessionModel.updateOne({
+                                grpid: grpid,
+                                current_checkpoint: rsp1[0].currentLevel
+                            }, {
+                                _id: rsp3[0]._id,
+                                grpid: rsp3[0].grpid,
+                                week_start_date: rsp3[0].week_start_date,
+                                week_goal: rsp3[0].week_goal,
+                                total_achieved_steps: rsp3[0].total_achieved_steps,
+                                total_points: (rsp3[0].total_points - quantity),
+                                individual_contribution: rsp3[0].individual_contribution,
+                                current_checkpoint: rsp3[0].current_checkpoint
+                            }).then((rsp4) => {
+                                res.send('Item added successfully');
+                            }).catch((er5) => {
+                                res.send(er5);
+                            })
+                        }).catch((er6) => {
+                            res.send(er6);
+                        })
+                    }).catch((er7) => {
+                        res.send(er7);
+                    })
+                }).catch((er1) => {
+                    res.send(er1);
+                })
             }).catch((err) => {
                 res.send(err);
             })
@@ -46,7 +95,54 @@ const addItem = (req, res) => {
                 bag: response[0].bag,
                 flower: response[0].flower
             }).then((rep) => {
-                res.send('Item addedd successfully');
+                groupModel.find({
+                    grpid: grpid
+                }).then((rsp1) => {
+                    groupModel.updateOne({
+                        grpid: grpid
+                    }, {
+                        _id: rsp1[0]._id,
+                        grpdi: grpid,
+                        users: rsp1[0].users,
+                        currentLevel: rsp1[0].currentLevel,
+                        grpid: grpid,
+                        admin: rsp1[0].admin,
+                        weekGoal: rsp1[0].weekGoal,
+                        points:(rsp1[0].points - 100*quantity),
+                        stat: rsp1[0].stat,
+                        steps: rsp1[0].steps,
+                        session: rsp1[0].session
+                    }).then((rsp2) => {
+                        gamesessionModel.find({
+                            grpid: grpid,
+                            current_checkpoint: rsp1[0].currentLevel
+                        }).then((rsp3) => {
+                            gamesessionModel.updateOne({
+                                grpid: grpid,
+                                current_checkpoint: rsp1[0].currentLevel
+                            }, {
+                                _id: rsp3[0]._id,
+                                grpid: rsp3[0].grpid,
+                                week_start_date: rsp3[0].week_start_date,
+                                week_goal: rsp3[0].week_goal,
+                                total_achieved_steps: rsp3[0].total_achieved_steps,
+                                total_points: (rsp3[0].total_points - 100*quantity),
+                                individual_contribution: rsp3[0].individual_contribution,
+                                current_checkpoint: rsp3[0].current_checkpoint
+                            }).then((rsp4) => {
+                                res.send('Item added successfully');
+                            }).catch((er5) => {
+                                res.send(er5);
+                            })
+                        }).catch((er6) => {
+                            res.send(er6);
+                        })
+                    }).catch((er7) => {
+                        res.send(er7);
+                    })
+                }).catch((er1) => {
+                    res.send(er1);
+                })
             }).catch((err) => {
                 res.send(err);
             })
@@ -68,7 +164,54 @@ const addItem = (req, res) => {
                 bag: response[0].bag,
                 flower: response[0].flower
             }).then((rep) => {
-                res.send('Item addedd successfully');
+                groupModel.find({
+                    grpid: grpid
+                }).then((rsp1) => {
+                    groupModel.updateOne({
+                        grpid: grpid
+                    }, {
+                        _id: rsp1[0]._id,
+                        grpdi: grpid,
+                        users: rsp1[0].users,
+                        currentLevel: rsp1[0].currentLevel,
+                        grpid: grpid,
+                        admin: rsp1[0].admin,
+                        weekGoal: rsp1[0].weekGoal,
+                        points:(rsp1[0].points - 5*quantity),
+                        stat: rsp1[0].stat,
+                        steps: rsp1[0].steps,
+                        session: rsp1[0].session
+                    }).then((rsp2) => {
+                        gamesessionModel.find({
+                            grpid: grpid,
+                            current_checkpoint: rsp1[0].currentLevel
+                        }).then((rsp3) => {
+                            gamesessionModel.updateOne({
+                                grpid: grpid,
+                                current_checkpoint: rsp1[0].currentLevel
+                            }, {
+                                _id: rsp3[0]._id,
+                                grpid: rsp3[0].grpid,
+                                week_start_date: rsp3[0].week_start_date,
+                                week_goal: rsp3[0].week_goal,
+                                total_achieved_steps: rsp3[0].total_achieved_steps,
+                                total_points: (rsp3[0].total_points - 5*quantity),
+                                individual_contribution: rsp3[0].individual_contribution,
+                                current_checkpoint: rsp3[0].current_checkpoint
+                            }).then((rsp4) => {
+                                res.send('Item added successfully');
+                            }).catch((er5) => {
+                                res.send(er5);
+                            })
+                        }).catch((er6) => {
+                            res.send(er6);
+                        })
+                    }).catch((er7) => {
+                        res.send(er7);
+                    })
+                }).catch((er1) => {
+                    res.send(er1);
+                })
             }).catch((err) => {
                 res.send(err);
             })
@@ -90,7 +233,54 @@ const addItem = (req, res) => {
                 bag: response[0].bag,
                 flower: response[0].flower
             }).then((rep) => {
-                res.send('Item addedd successfully');
+                groupModel.find({
+                    grpid: grpid
+                }).then((rsp1) => {
+                    groupModel.updateOne({
+                        grpid: grpid
+                    }, {
+                        _id: rsp1[0]._id,
+                        grpdi: grpid,
+                        users: rsp1[0].users,
+                        currentLevel: rsp1[0].currentLevel,
+                        grpid: grpid,
+                        admin: rsp1[0].admin,
+                        weekGoal: rsp1[0].weekGoal,
+                        points:(rsp1[0].points - 5*quantity),
+                        stat: rsp1[0].stat,
+                        steps: rsp1[0].steps,
+                        session: rsp1[0].session
+                    }).then((rsp2) => {
+                        gamesessionModel.find({
+                            grpid: grpid,
+                            current_checkpoint: rsp1[0].currentLevel
+                        }).then((rsp3) => {
+                            gamesessionModel.updateOne({
+                                grpid: grpid,
+                                current_checkpoint: rsp1[0].currentLevel
+                            }, {
+                                _id: rsp3[0]._id,
+                                grpid: rsp3[0].grpid,
+                                week_start_date: rsp3[0].week_start_date,
+                                week_goal: rsp3[0].week_goal,
+                                total_achieved_steps: rsp3[0].total_achieved_steps,
+                                total_points: (rsp3[0].total_points - 5*quantity),
+                                individual_contribution: rsp3[0].individual_contribution,
+                                current_checkpoint: rsp3[0].current_checkpoint
+                            }).then((rsp4) => {
+                                res.send('Item added successfully');
+                            }).catch((er5) => {
+                                res.send(er5);
+                            })
+                        }).catch((er6) => {
+                            res.send(er6);
+                        })
+                    }).catch((er7) => {
+                        res.send(er7);
+                    })
+                }).catch((er1) => {
+                    res.send(er1);
+                })
             }).catch((err) => {
                 res.send(err);
             })
@@ -112,7 +302,54 @@ const addItem = (req, res) => {
                 bag: response[0].bag,
                 flower: response[0].flower
             }).then((rep) => {
-                res.send('Item addedd successfully');
+                groupModel.find({
+                    grpid: grpid
+                }).then((rsp1) => {
+                    groupModel.updateOne({
+                        grpid: grpid
+                    }, {
+                        _id: rsp1[0]._id,
+                        grpdi: grpid,
+                        users: rsp1[0].users,
+                        currentLevel: rsp1[0].currentLevel,
+                        grpid: grpid,
+                        admin: rsp1[0].admin,
+                        weekGoal: rsp1[0].weekGoal,
+                        points:(rsp1[0].points - 10*quantity),
+                        stat: rsp1[0].stat,
+                        steps: rsp1[0].steps,
+                        session: rsp1[0].session
+                    }).then((rsp2) => {
+                        gamesessionModel.find({
+                            grpid: grpid,
+                            current_checkpoint: rsp1[0].currentLevel
+                        }).then((rsp3) => {
+                            gamesessionModel.updateOne({
+                                grpid: grpid,
+                                current_checkpoint: rsp1[0].currentLevel
+                            }, {
+                                _id: rsp3[0]._id,
+                                grpid: rsp3[0].grpid,
+                                week_start_date: rsp3[0].week_start_date,
+                                week_goal: rsp3[0].week_goal,
+                                total_achieved_steps: rsp3[0].total_achieved_steps,
+                                total_points: (rsp3[0].total_points - 10*quantity),
+                                individual_contribution: rsp3[0].individual_contribution,
+                                current_checkpoint: rsp3[0].current_checkpoint
+                            }).then((rsp4) => {
+                                res.send('Item added successfully');
+                            }).catch((er5) => {
+                                res.send(er5);
+                            })
+                        }).catch((er6) => {
+                            res.send(er6);
+                        })
+                    }).catch((er7) => {
+                        res.send(er7);
+                    })
+                }).catch((er1) => {
+                    res.send(er1);
+                })
             }).catch((err) => {
                 res.send(err);
             })
@@ -134,7 +371,54 @@ const addItem = (req, res) => {
                 bag: response[0].bag,
                 flower: response[0].flower
             }).then((rep) => {
-                res.send('Item addedd successfully');
+                groupModel.find({
+                    grpid: grpid
+                }).then((rsp1) => {
+                    groupModel.updateOne({
+                        grpid: grpid
+                    }, {
+                        _id: rsp1[0]._id,
+                        grpdi: grpid,
+                        users: rsp1[0].users,
+                        currentLevel: rsp1[0].currentLevel,
+                        grpid: grpid,
+                        admin: rsp1[0].admin,
+                        weekGoal: rsp1[0].weekGoal,
+                        points:(rsp1[0].points - 40*quantity),
+                        stat: rsp1[0].stat,
+                        steps: rsp1[0].steps,
+                        session: rsp1[0].session
+                    }).then((rsp2) => {
+                        gamesessionModel.find({
+                            grpid: grpid,
+                            current_checkpoint: rsp1[0].currentLevel
+                        }).then((rsp3) => {
+                            gamesessionModel.updateOne({
+                                grpid: grpid,
+                                current_checkpoint: rsp1[0].currentLevel
+                            }, {
+                                _id: rsp3[0]._id,
+                                grpid: rsp3[0].grpid,
+                                week_start_date: rsp3[0].week_start_date,
+                                week_goal: rsp3[0].week_goal,
+                                total_achieved_steps: rsp3[0].total_achieved_steps,
+                                total_points: (rsp3[0].total_points - 40*quantity),
+                                individual_contribution: rsp3[0].individual_contribution,
+                                current_checkpoint: rsp3[0].current_checkpoint
+                            }).then((rsp4) => {
+                                res.send('Item added successfully');
+                            }).catch((er5) => {
+                                res.send(er5);
+                            })
+                        }).catch((er6) => {
+                            res.send(er6);
+                        })
+                    }).catch((er7) => {
+                        res.send(er7);
+                    })
+                }).catch((er1) => {
+                    res.send(er1);
+                })
             }).catch((err) => {
                 res.send(err);
             })
@@ -156,7 +440,54 @@ const addItem = (req, res) => {
                 bag: response[0].bag,
                 flower: response[0].flower
             }).then((rep) => {
-                res.send('Item addedd successfully');
+                groupModel.find({
+                    grpid: grpid
+                }).then((rsp1) => {
+                    groupModel.updateOne({
+                        grpid: grpid
+                    }, {
+                        _id: rsp1[0]._id,
+                        grpdi: grpid,
+                        users: rsp1[0].users,
+                        currentLevel: rsp1[0].currentLevel,
+                        grpid: grpid,
+                        admin: rsp1[0].admin,
+                        weekGoal: rsp1[0].weekGoal,
+                        points:(rsp1[0].points - 20*quantity),
+                        stat: rsp1[0].stat,
+                        steps: rsp1[0].steps,
+                        session: rsp1[0].session
+                    }).then((rsp2) => {
+                        gamesessionModel.find({
+                            grpid: grpid,
+                            current_checkpoint: rsp1[0].currentLevel
+                        }).then((rsp3) => {
+                            gamesessionModel.updateOne({
+                                grpid: grpid,
+                                current_checkpoint: rsp1[0].currentLevel
+                            }, {
+                                _id: rsp3[0]._id,
+                                grpid: rsp3[0].grpid,
+                                week_start_date: rsp3[0].week_start_date,
+                                week_goal: rsp3[0].week_goal,
+                                total_achieved_steps: rsp3[0].total_achieved_steps,
+                                total_points: (rsp3[0].total_points - 20*quantity),
+                                individual_contribution: rsp3[0].individual_contribution,
+                                current_checkpoint: rsp3[0].current_checkpoint
+                            }).then((rsp4) => {
+                                res.send('Item added successfully');
+                            }).catch((er5) => {
+                                res.send(er5);
+                            })
+                        }).catch((er6) => {
+                            res.send(er6);
+                        })
+                    }).catch((er7) => {
+                        res.send(er7);
+                    })
+                }).catch((er1) => {
+                    res.send(er1);
+                })
             }).catch((err) => {
                 res.send(err);
             })
@@ -178,7 +509,54 @@ const addItem = (req, res) => {
                 bag: response[0].bag,
                 flower: response[0].flower
             }).then((rep) => {
-                res.send('Item addedd successfully');
+                groupModel.find({
+                    grpid: grpid
+                }).then((rsp1) => {
+                    groupModel.updateOne({
+                        grpid: grpid
+                    }, {
+                        _id: rsp1[0]._id,
+                        grpdi: grpid,
+                        users: rsp1[0].users,
+                        currentLevel: rsp1[0].currentLevel,
+                        grpid: grpid,
+                        admin: rsp1[0].admin,
+                        weekGoal: rsp1[0].weekGoal,
+                        points:(rsp1[0].points - 50*quantity),
+                        stat: rsp1[0].stat,
+                        steps: rsp1[0].steps,
+                        session: rsp1[0].session
+                    }).then((rsp2) => {
+                        gamesessionModel.find({
+                            grpid: grpid,
+                            current_checkpoint: rsp1[0].currentLevel
+                        }).then((rsp3) => {
+                            gamesessionModel.updateOne({
+                                grpid: grpid,
+                                current_checkpoint: rsp1[0].currentLevel
+                            }, {
+                                _id: rsp3[0]._id,
+                                grpid: rsp3[0].grpid,
+                                week_start_date: rsp3[0].week_start_date,
+                                week_goal: rsp3[0].week_goal,
+                                total_achieved_steps: rsp3[0].total_achieved_steps,
+                                total_points: (rsp3[0].total_points - 50*quantity),
+                                individual_contribution: rsp3[0].individual_contribution,
+                                current_checkpoint: rsp3[0].current_checkpoint
+                            }).then((rsp4) => {
+                                res.send('Item added successfully');
+                            }).catch((er5) => {
+                                res.send(er5);
+                            })
+                        }).catch((er6) => {
+                            res.send(er6);
+                        })
+                    }).catch((er7) => {
+                        res.send(er7);
+                    })
+                }).catch((er1) => {
+                    res.send(er1);
+                })
             }).catch((err) => {
                 res.send(err);
             })
@@ -200,7 +578,54 @@ const addItem = (req, res) => {
                 bag: response[0].bag + quantity,
                 flower: response[0].flower
             }).then((rep) => {
-                res.send('Item addedd successfully');
+                groupModel.find({
+                    grpid: grpid
+                }).then((rsp1) => {
+                    groupModel.updateOne({
+                        grpid: grpid
+                    }, {
+                        _id: rsp1[0]._id,
+                        grpdi: grpid,
+                        users: rsp1[0].users,
+                        currentLevel: rsp1[0].currentLevel,
+                        grpid: grpid,
+                        admin: rsp1[0].admin,
+                        weekGoal: rsp1[0].weekGoal,
+                        points:(rsp1[0].points - 40*quantity),
+                        stat: rsp1[0].stat,
+                        steps: rsp1[0].steps,
+                        session: rsp1[0].session
+                    }).then((rsp2) => {
+                        gamesessionModel.find({
+                            grpid: grpid,
+                            current_checkpoint: rsp1[0].currentLevel
+                        }).then((rsp3) => {
+                            gamesessionModel.updateOne({
+                                grpid: grpid,
+                                current_checkpoint: rsp1[0].currentLevel
+                            }, {
+                                _id: rsp3[0]._id,
+                                grpid: rsp3[0].grpid,
+                                week_start_date: rsp3[0].week_start_date,
+                                week_goal: rsp3[0].week_goal,
+                                total_achieved_steps: rsp3[0].total_achieved_steps,
+                                total_points: (rsp3[0].total_points - 40*quantity),
+                                individual_contribution: rsp3[0].individual_contribution,
+                                current_checkpoint: rsp3[0].current_checkpoint
+                            }).then((rsp4) => {
+                                res.send('Item added successfully');
+                            }).catch((er5) => {
+                                res.send(er5);
+                            })
+                        }).catch((er6) => {
+                            res.send(er6);
+                        })
+                    }).catch((er7) => {
+                        res.send(er7);
+                    })
+                }).catch((er1) => {
+                    res.send(er1);
+                })
             }).catch((err) => {
                 res.send(err);
             })
@@ -222,7 +647,54 @@ const addItem = (req, res) => {
                 bag: response[0].bag,
                 flower: response[0].flower + quantity
             }).then((rep) => {
-                res.send('Item addedd successfully');
+                groupModel.find({
+                    grpid: grpid
+                }).then((rsp1) => {
+                    groupModel.updateOne({
+                        grpid: grpid
+                    }, {
+                        _id: rsp1[0]._id,
+                        grpdi: grpid,
+                        users: rsp1[0].users,
+                        currentLevel: rsp1[0].currentLevel,
+                        grpid: grpid,
+                        admin: rsp1[0].admin,
+                        weekGoal: rsp1[0].weekGoal,
+                        points:(rsp1[0].points - 2*quantity),
+                        stat: rsp1[0].stat,
+                        steps: rsp1[0].steps,
+                        session: rsp1[0].session
+                    }).then((rsp2) => {
+                        gamesessionModel.find({
+                            grpid: grpid,
+                            current_checkpoint: rsp1[0].currentLevel
+                        }).then((rsp3) => {
+                            gamesessionModel.updateOne({
+                                grpid: grpid,
+                                current_checkpoint: rsp1[0].currentLevel
+                            }, {
+                                _id: rsp3[0]._id,
+                                grpid: rsp3[0].grpid,
+                                week_start_date: rsp3[0].week_start_date,
+                                week_goal: rsp3[0].week_goal,
+                                total_achieved_steps: rsp3[0].total_achieved_steps,
+                                total_points: (rsp3[0].total_points - 2*quantity),
+                                individual_contribution: rsp3[0].individual_contribution,
+                                current_checkpoint: rsp3[0].current_checkpoint
+                            }).then((rsp4) => {
+                                res.send('Item added successfully');
+                            }).catch((er5) => {
+                                res.send(er5);
+                            })
+                        }).catch((er6) => {
+                            res.send(er6);
+                        })
+                    }).catch((er7) => {
+                        res.send(er7);
+                    })
+                }).catch((er1) => {
+                    res.send(er1);
+                })
             }).catch((err) => {
                 res.send(err);
             })

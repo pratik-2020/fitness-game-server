@@ -74,6 +74,8 @@
 // module.exports = createGroup;
 const groupModel = require('../../model/group');
 const gamesessionModel = require('../../model/gamesession');
+const gardenstoreModel = require('../../model/gardenstore');
+
 
 const createGroup = (req, res) => {
     const email = req.body.email;
@@ -127,7 +129,26 @@ const createGroup = (req, res) => {
                                 steps:rep[0].steps,
                                 session: response[0]._id
                             }).then((rep1) => {
-                                res.send({grpid});
+                                let gaardenm = new gardenstoreModel();
+                                gaardenm.grpid = grpid;
+                                gaardenm.seed = 0;
+                                gaardenm.house = 0;
+                                gaardenm.smallplant = 0;
+                                gaardenm.mediumplant = 0;
+                                gaardenm.largeplant = 0;
+                                gaardenm.weedkiller = 0;
+                                gaardenm.sodroller = 0;
+                                gaardenm.tree = 0;
+                                gaardenm.bag = 0;
+                                gaardenm.flower = 0;
+                                gaardenm.save((e, d) => {
+                                    if(e){
+                                        res.send(e);
+                                    }
+                                    else{
+                                        res.send({grpid});
+                                    }
+                                })
                             }).catch((err) => {
                                 res.send(err);
                             })
