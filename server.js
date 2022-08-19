@@ -255,7 +255,7 @@ app.post('/getURL', (req, res) => {
     const oauth2Client = new google.auth.OAuth2(
         "611658826728-ob0ffv5qe6gee0o4q32afip1ldb71632.apps.googleusercontent.com",
         "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",
-        `https://fitness-game-server.heroku.com/steps`
+        "https://fitness-game-server.herokuapp.com/steps"
     );
 
     const scopes = ["https://www.googleapis.com/auth/fitness.activity.read profile email openid"]
