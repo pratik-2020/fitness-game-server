@@ -157,7 +157,7 @@ app.get('/points', async(req, res) => {
                 // console.log(result);
                 stepArray = result.data.bucket
             }catch(e){
-                res.send(e);
+                res.send(e.message);
             }
             try{
                 let pt1 = 0;
@@ -331,7 +331,7 @@ app.get('/steps', async (req, res) => {
                     // console.log(result);
                     stepArray = result.data.bucket
                 }catch(e){
-                    res.send(e);
+                    res.send(e.message);
                 }
                 try{
                     for(const dataSet of stepArray){
