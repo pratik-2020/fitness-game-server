@@ -20,7 +20,7 @@ const joinGroup = (req, res) => {
             response[0].users.map((e,key) => {
                 f.push(e);
             });
-            f.push([email,'No respond']);
+            f.push([req.body.email,'No respond']);
             groupModel.updateOne({
                 _id: response._id
             }, {
