@@ -13,7 +13,7 @@ const joinGroup = (req, res) => {
             res.send('Group size limit is already finished!!');
         }
         else{
-            response.users = [...response.users,user];
+            response.users = [...response.users,[user, 'No respond']];
             groupModel.updateOne({
                 _id: response._id
             }, response).then((resp) => {
@@ -26,5 +26,6 @@ const joinGroup = (req, res) => {
         res.send(err.message);
     })
 }
+//pratikthakur2019@gmail.com181660786576795
 
 module.exports = joinGroup;
