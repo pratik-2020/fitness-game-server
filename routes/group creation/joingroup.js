@@ -16,13 +16,13 @@ const joinGroup = (req, res) => {
         }
         else{
             console.log('Wel3')
-            response[0].users = [...response.users[0],[user, 'No respond']];
+            response[0].users = [...response[0].users,[user, 'No respond']];
             groupModel.updateOne({
                 _id: response._id
             }, response).then((resp) => {
                 res.send('USer successfully joined the group!!');
             }).catch((er) => {
-                res.send(er.message);
+                res.send(er);
             });
         }
     }).catch(err => {
