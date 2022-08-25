@@ -97,7 +97,7 @@ app.post('/url', (req, res) => {
             em:email
         })
     })
-    console.log(req.body.callbackURL);
+    res.send(req.body.callbackURL);
 
     request(url, (err, response, body) => {
         console.log("error ", err);
