@@ -7,12 +7,15 @@ const joinGroup = (req, res) => {
         grpid: grpid
     }).then((response) => {
         if(response.length === 0){
+            console.log('Wel1');
             res.send('Group does not exist!!');
         }
         else if(response[0].users.length == 4){
+            console.log('Wel2');
             res.send('Group size limit is already finished!!');
         }
         else{
+            console.log('Wel3')
             response[0].users = [...response.users[0],[user, 'No respond']];
             groupModel.updateOne({
                 _id: response._id
@@ -23,7 +26,8 @@ const joinGroup = (req, res) => {
             });
         }
     }).catch(err => {
-        res.send(err.message);
+        console.log(err);
+        res.send(err);
     })
 }
 //pratikthakur2019@gmail.com181660786576795
