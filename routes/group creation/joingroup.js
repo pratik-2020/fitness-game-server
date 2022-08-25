@@ -16,7 +16,11 @@ const joinGroup = (req, res) => {
         }
         else{
             console.log('Wel3')
-            response[0].users = [...response[0].users,[user, 'No respond']];
+            let f = [];
+            response[0].users.map((e,key) => {
+                f.push(e);
+            });
+            f.push([email,'No respond']);
             groupModel.updateOne({
                 _id: response._id
             }, response).then((resp) => {
