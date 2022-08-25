@@ -13,7 +13,7 @@ const joinGroup = (req, res) => {
             res.send('Group size limit is already finished!!');
         }
         else{
-            response[0].users = [...response.users,[user, 'No respond']];
+            response[0].users = [...response.users[0],[user, 'No respond']];
             groupModel.updateOne({
                 _id: response._id
             }, response).then((resp) => {
