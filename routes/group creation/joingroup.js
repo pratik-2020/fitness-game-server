@@ -22,7 +22,7 @@ const joinGroup = (req, res) => {
             });
             f.push([req.body.email,'No respond']);
             groupModel.updateOne({
-                _id: response._id
+                _id: response[0]._id
             }, {
                 _id: response[0]._id,
                 grpid: req.body.grpid,
