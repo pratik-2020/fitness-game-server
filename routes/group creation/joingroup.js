@@ -23,7 +23,18 @@ const joinGroup = (req, res) => {
             f.push([email,'No respond']);
             groupModel.updateOne({
                 _id: response._id
-            }, response).then((resp) => {
+            }, {
+                _id: response[0]._id,
+                grpid: req.body.grpid,
+                users:f,
+                currentLevel: response[0].currentLevel,
+                admin:response[0].admin,
+                weekGoal:response[0].weekGoal,
+                points:response[0].points,
+                stat:response[0].stat,
+                steps:response[0].steps,
+                session:response[0].session,
+            }).then((resp) => {
                 res.send('USer successfully joined the group!!');
             }).catch((er) => {
                 res.send(er);
