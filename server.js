@@ -7,6 +7,7 @@ const login = require('./routes/user/login');
 const createGroup = require('./routes/group creation/creategroup');
 const joinGroup = require('./routes/group creation/joingroup');
 const updateGroup = require('./routes/group creation/updateGroup');
+const earntrophyModel = require('./model/earnatrophy');
 const sendJoinReq = require('./routes/group creation/send-join-req');
 const replyJoinReq = require('./routes/group creation/reply-join-request');
 const otpCreation = require('./routes/Otp/OtpCreation');
@@ -18,6 +19,7 @@ const retUserData = require('./routes/user/retrieve-user-data');
 const passUpdate = require('./routes/user/password-update');
 const urlParse = require('url-parse');
 const bodyParser = require('body-parser');
+const finaldecisionModel = require('./model/finaldecison');
 const queryPArse = require('query-string');
 const app = express();
 const request = require('request');
@@ -45,6 +47,9 @@ const retTrophy = require('./routes/earntrophy/retrievetrophy');
 const changeLeader = require('./routes/garden store/change-leader');
 const setCustom = require('./routes/group creation/set-custom');
 const verifyTrophy = require('./routes/earntrophy/verifytrophy');
+const chkFinalDecision = require('./routes/final decision/chk-final-decision');
+const retrieveVote = require('./routes/Vote/retrieve-vote');
+
 app.use(express.json());
 app.use(cors({
     origin: '*',
@@ -92,6 +97,7 @@ app.post('/url', (req, res) => {
             em:email
         })
     })
+    console.log(req.body.callbackURL);
 
     request(url, (err, response, body) => {
         console.log("error ", err);
@@ -328,7 +334,6 @@ app.get('/steps', async (req, res) => {
                             },
                             startTimeMillis: crttim - (new Date().getDate() -  parseInt(rep12.week_start_date))*24*60*60*1000,
                             endTimeMillis: crttim,
-        
                         }
                     })
                     // console.log(result);
@@ -348,6 +353,27 @@ app.get('/steps', async (req, res) => {
                     userModel.find({
                         email
                     }).then((response) => {
+                        const dt = parseInt(rep11[0].currentLevel);
+                        if(parseInt(rep11[0].weekGoal) <= stp){
+                            dt = dt + 1;
+                        }
+                        finaldecisionModel.find({
+                            grpid: rep11[0].grpid,
+                            level: ""+dt
+                        }).then((ans) => {
+                            if(ans[0].decision === 'Earn a trophy' && stp >= parseInt(ans[0].description)){
+                                earntrophyModel.updateOne({
+                                    grpid: rep11[0].grpid,
+                                    level: ""+dt
+                                }, {
+                                    achieved: "Yes"
+                                }).then((ans2) => {
+                                    console.log('Trophy earned');
+                                }).catch((pr) => {
+                                    res.send(pr);
+                                })
+                            }
+                        })
                         userModel.updateOne({
                             email: email
                         },{
@@ -369,7 +395,7 @@ app.get('/steps', async (req, res) => {
                                 }, {
                                     _id:rep._id,
                                     users: rep.users,
-                                    currentLevel:rep.currentLevel,
+                                    currentLevel:""+dt,
                                     grpid:rep.grpid,
                                     admin:rep.admin,
                                     weekGoal:rep.weekGoal,
@@ -427,6 +453,9 @@ app.get('/steps', async (req, res) => {
 });
 app.get('/leaderboard',(req, res) => {
     leaderBoard(req, res);
+});
+app.post('/retvote', (req,res) => {
+    retrieveVote(req, res);
 })
 app.post('/sendnotification', (req, res) => {
     sendNotification(req, res);
@@ -439,6 +468,9 @@ app.post('/seeennotification', (req,res) => {
 })
 app.post('/adduser', (req, res) => {
     addUser(req, res);
+});
+app.post('/chkfinaldecision', (req, res) => {
+    chkFinalDecision(req, res);
 })
 app.post('/creategroup', (req, res) => {
     createGroup(req, res);
