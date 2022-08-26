@@ -6,6 +6,7 @@ const chkFinalDecision = (req, res) => {
     groupModel.find({
         grpid: grpid
     }).then((response) => {
+        console.log(response[0]);
         finaldecisionModel.find({
             grpid: grpid,
             level: response[0].currentLevel
