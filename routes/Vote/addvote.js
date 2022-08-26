@@ -9,24 +9,29 @@ const addVote = (req, res) => {
         email: email
     }).then((response) => {
         groupModel.find({
-            grpid: response.grpid
+            grpid: response[0].grpid
         }).then((resp) => {
+            console.log(resp);
             let votem = new voteModel();
             votem.email = email;
             votem.vote = vote;
             votem.level = resp.currentLevel;
             votem.save((err, data) => {
                 if(err){
-                    res.send('Error occoured');
+                    console.log(err);
+                    res.send(err);
                 }
                 else{
+                    console.log('Hello');
                     res.send('Vote added successfully');
                 }
             })
         }).catch((er) => {
+            console.log('welcome'+er);
             res.send(er);
         })
     }).catch((err) => {
+        console.log('How '+err);
         res.send(err);
     })
 }
