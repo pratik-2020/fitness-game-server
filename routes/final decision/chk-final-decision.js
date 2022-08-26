@@ -1,4 +1,4 @@
-const groupModel = require('../../model/finaldecison');
+const groupModel = require('../../model/group');
 const finaldecisionModel = require('../../model/finaldecison');
 
 const chkFinalDecision = (req, res) => {
