@@ -15,7 +15,7 @@ const addVote = (req, res) => {
             let votem = new voteModel();
             votem.email = email;
             votem.vote = vote;
-            votem.level = resp.currentLevel;
+            votem.level = resp[0].currentLevel;
             votem.save((err, data) => {
                 if(err){
                     console.log(err);
