@@ -8,9 +8,13 @@ const replyJoinRequest = (req, res) => {
     groupModel.find({
         grpid: grpid
     }).then((response) => {
+        let f = []
         response[0].users.map((e,key) => {
-            if(e.email === email){
-                e.reply = reply;
+            if(e[0] === email){
+                f.push([e[0], reply]);
+            }
+            else{
+                f.push(e);
             }
         })
         if(response.length === 0){
@@ -21,7 +25,7 @@ const replyJoinRequest = (req, res) => {
                 grpid: grpid
             }, {
                 _id: response[0].id,
-                users: response[0].users,
+                users: f,
                 currentLevel : response[0].currentLevel,
                 grpid: response[0].grpid,
                 admin: response[0].admin
