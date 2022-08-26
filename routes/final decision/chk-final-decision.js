@@ -3,15 +3,16 @@ const finaldecisionModel = require('../../model/finaldecison');
 
 const chkFinalDecision = (req, res) => {
     const grpid = req.body.grpid;
+    console.log(grpid);
     groupModel.find({
         grpid: grpid
     }).then((response) => {
-        console.log(response[0]);
+        console.log("response "+response[0]);
         finaldecisionModel.find({
             grpid: grpid,
             level: response[0].currentLevel
         }).then((rep1) => {
-            console.log(rep1);
+            console.log("rep1 "+rep1);
             if(rep1.length === 0){
                 res.send('No');
             }
