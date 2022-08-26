@@ -49,7 +49,7 @@ const setCustom = require('./routes/group creation/set-custom');
 const verifyTrophy = require('./routes/earntrophy/verifytrophy');
 const chkFinalDecision = require('./routes/final decision/chk-final-decision');
 const retrieveVote = require('./routes/Vote/retrieve-vote');
-
+const addFinalDecision = require('./routes/final decision/addfinaldecision');
 app.use(express.json());
 app.use(cors({
     origin: '*',
@@ -475,6 +475,9 @@ app.post('/chkfinaldecision', (req, res) => {
 app.post('/creategroup', (req, res) => {
     createGroup(req, res);
 });
+app.post('/addfinal', (req, res) => {
+    addFinalDecision(req,res);
+})
 app.post('/setcustom', (req, res) => {
     setCustom(req, res);
 })
