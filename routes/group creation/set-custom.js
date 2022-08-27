@@ -19,23 +19,28 @@ const setCustom = (req, res) => {
                 res.send(err);
             }
             else{
-                groupModel.updateOne({
-                    grpid: grpid
-                }, {
-                    _id: response[0]._id,
-                    users: response[0].users,
-                    currentLevel: response[0].currentLevel,
-                    grpid: grpid,
-                    admin: response[0].admin,
-                    weekGoal:response[0].weekGoal,
-                    points: response[0].points,
-                    stat: response[0].stat,
-                    steps: cust,
-                    session: response[0].session
-                }).then((rep) => {
-                    res.send('Custom goal set');
-                }).catch((er) => {
-                    res.send(er);
+                gamesessionModel.find({
+                    grpid:grpid,
+                    current_checkpoint: ''+(parseInt(response[0].currentLevel) + 1)
+                }).then((rep1) => {
+                    groupModel.updateOne({
+                        grpid: grpid
+                    }, {
+                        _id: response[0]._id,
+                        users: response[0].users,
+                        currentLevel: response[0].currentLevel,
+                        grpid: grpid,
+                        admin: response[0].admin,
+                        weekGoal:cust,
+                        points: response[0].points,
+                        stat: response[0].stat,
+                        steps: 0,
+                        session: rep1[0]._id
+                    }).then((rep) => {
+                        res.send('Custom goal set');
+                    }).catch((er) => {
+                        res.send(er);
+                    })
                 })
             }
         })
