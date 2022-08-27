@@ -50,6 +50,7 @@ const verifyTrophy = require('./routes/earntrophy/verifytrophy');
 const chkFinalDecision = require('./routes/final decision/chk-final-decision');
 const retrieveVote = require('./routes/Vote/retrieve-vote');
 const addFinalDecision = require('./routes/final decision/addfinaldecision');
+const updateStepsPoints = require('./routes/garden store/update-points-steps');
 app.use(express.json());
 app.use(cors({
     origin: '*',
@@ -480,6 +481,9 @@ app.post('/addfinal', (req, res) => {
 })
 app.post('/setcustom', (req, res) => {
     setCustom(req, res);
+})
+app.post('/updatestepspoints', (req, res) => {
+    updateStepsPoints(req, res);
 })
 app.post('/joingroup', (req, res) => {
     joinGroup(req, res);
