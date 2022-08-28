@@ -13,6 +13,7 @@ const addTrophy = (req, res) => {
         earnm.trophy = trophy;
         earnm.point = point;
         earnm.level = response[0].level;
+        earnm.achieved = 'No';
         earnm.save((err, data) => {
             if(err){
                 res.send(err);
