@@ -6,16 +6,20 @@ const changeLeader = (req, res) => {
         grpid: grpid
     }).then((response) => {
         let g = response[0].users;
-        let f = 0,i=0;
+        let f = 0,i=0, d = [];
         g.map((e,key) => {
-            if(e[0] === response[0].admin){
-                f = i;
-            }
-            else{
-                i = i + 1;
+            if(e[1] === 'Accepted'){
+                d.push(e[0]);
             }
         })
-        let nm = response[0].users[( i + 1 )%(response[0].users.length)];
+        let a = d.indexOf(response[0].admin);
+        let nm = "";
+        if(a === d.length -1){
+            nm = d[0];
+        }
+        else{
+            nm = d[a+1];
+        }
         groupModel.updateOne({
             grpid: grpid
         }, {
