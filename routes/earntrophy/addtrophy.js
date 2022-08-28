@@ -12,7 +12,7 @@ const addTrophy = (req, res) => {
         earnm.grpid = grpid;
         earnm.trophy = trophy;
         earnm.point = point;
-        earnm.level = response[0].level;
+        earnm.level = response[0].currentLevel;
         earnm.achieved = 'No';
         earnm.save((err, data) => {
             if(err){
