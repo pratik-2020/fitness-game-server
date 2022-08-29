@@ -32,7 +32,7 @@ const addTrophy = (req, res) => {
                         res.send(er);
                     }
                     else{
-                        gamem.find({
+                        gamesessionModel.find({
                             grpid: grpid,
                             current_checkpoint: response[0].currentLevel
                         }).then((re) => {
