@@ -1,6 +1,7 @@
 const groupModel = require('../../model/group');
 const userModel = require('../../model/user');
 const gamesessionModel = require('../../model/gamesession');
+const earnatrophy = require('../../model/earnatrophy');
 const updateStepsPoints = (req, res) => {
     const email = req.body.email;
     const grpid = req.body.grpid;
@@ -61,7 +62,33 @@ const updateStepsPoints = (req, res) => {
                             steps:(resp5[0].steps + steps),
                             point: ""+(parseInt(resp5[0].point) + points)
                         }).then((resp6) => {
-                            res.send('Data updated');
+                            earnatrophy.find({
+                                grpid:grpid,
+                                level:resp1[0].currentLevel
+                            }).then((resp7) => {
+                                if(resp7[0].point <= steps){
+                                    earnatrophy.updateOne({
+                                        grpid:grpid,
+                                        level:resp1[0].currentLevel
+                                    },{
+                                        _id:resp7[0]._id,
+                                        level:resp1[0].currentLevel,
+                                        achieved:'Yes',
+                                        point:resp7[0].point,
+                                        trophy:resp7[0].trophy,
+                                        grpid:grpid
+                                    }).then((resp8) => {
+                                        res.send('Data updated and trophy acieved');
+                                    }).catch((er8) => {
+                                        res.send(er8);
+                                    })
+                                }
+                                else{
+                                    res.send('Data updated');
+                                }
+                            }).catch((er7) => {
+                                res.send(er7);
+                            })
                         }).catch((er6) => {
                             res.send(er6);
                         })
