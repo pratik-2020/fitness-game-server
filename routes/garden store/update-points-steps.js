@@ -87,24 +87,31 @@ const updateStepsPoints = (req, res) => {
                                     res.send('Data updated');
                                 }
                             }).catch((er7) => {
+                                console.log('Hel7');
                                 res.send(er7);
                             })
                         }).catch((er6) => {
+                            console.log('Hel6');
                             res.send(er6);
                         })
                     }).catch((er5) => {
+                        console.log('Hel5');
                         res.send(er5);
                     })
                 }).catch((er4) => {
+                    console.log('Hel4');
                     res.send(er4);
                 })
             }).catch((er3) => {
+                console.log('Hel3');
                 res.send(er3);
             })
         }).catch((er2) => {
+            console.log('Hel2');
             res.send(er2);
         })
     }).catch((er1) => {
+        console.log('Hel1');
         res.send(er1);
     })
 }
