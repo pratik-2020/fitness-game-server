@@ -21,6 +21,8 @@ const addFinalDecision = (req, res) => {
                 res.send('Decision added');
             }
         })
+    }).catch((er) => {
+        res.send(er);
     })
 }
 
