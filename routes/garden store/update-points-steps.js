@@ -24,7 +24,7 @@ const updateStepsPoints = (req, res) => {
             grpid:grpid,
             admin:resp1[0].admin,
             weekGoal: resp1[0].weekGoal,
-            points:(resp1[0]+points),
+            points:(resp1[0].points+points),
             stat: resp1[0].stat,
             steps: ""+(parseInt(resp1[0].steps) + steps),
             session: resp1[0].session
