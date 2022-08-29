@@ -7,6 +7,7 @@ const addFinalDecision = (req, res) => {
     groupModel.find({
         grpid: grpid
     }).then((response) => {
+        console.log(response);
         let finalm = new finaldecisionModel();
         finalm.grpid = grpid;
         finalm.decision = decision;
