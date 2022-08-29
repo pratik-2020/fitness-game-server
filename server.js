@@ -261,9 +261,9 @@ app.post('/getURL', (req, res) => {
     console.log(email);
     // const state = { em : email};
     const oauth2Client = new google.auth.OAuth2(
-        "611658826728-ob0ffv5qe6gee0o4q32afip1ldb71632.apps.googleusercontent.com",
-        "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",
-        "https://fitness-game-server.herokuapp.com/steps"
+      {clientId:"611658826728-ob0ffv5qe6gee0o4q32afip1ldb71632.apps.googleusercontent.com",
+        clientSecret:"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",
+        redirectUri:"https://fitness-game-server.herokuapp.com/steps"}
         // true
     );
 
@@ -304,10 +304,10 @@ app.get('/steps', async (req, res) => {
                 _id: rep11.session
             }).then(async (rep12) => {
                 const oauth2Client = new google.auth.OAuth2(
-                    "611658826728-ob0ffv5qe6gee0o4q32afip1ldb71632.apps.googleusercontent.com",
-                    "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",
-                    "https://fitness-game-server.heroku.com/steps",
-                    true
+                    {clientId:"611658826728-ob0ffv5qe6gee0o4q32afip1ldb71632.apps.googleusercontent.com",
+                    clientSecret:"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",
+                    redirectUri:"https://fitness-game-server.herokuapp.com/steps"
+                }
                 );
                 const tokens = await oauth2Client.getToken(code);
                 // console.log(tokens);
