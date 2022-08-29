@@ -8,6 +8,7 @@ const addFinalDecision = (req, res) => {
         grpid: grpid
     }).then((response) => {
         console.log(response);
+        console.log(grpid);
         let finalm = new finaldecisionModel();
         finalm.grpid = grpid;
         finalm.decision = decision;
@@ -27,3 +28,6 @@ const addFinalDecision = (req, res) => {
 }
 
 module.exports = addFinalDecision;
+
+
+// Decision added
