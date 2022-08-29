@@ -44,7 +44,7 @@ const updateStepsPoints = (req, res) => {
                     total_achieved_steps:(resp3[0].total_achieved_steps+steps),
                     total_points:resp3[0].total_points+points,
                     individual_contribution:resp3[0].individual_contribution,
-                    current_checkpoint:crt
+                    current_checkpoint:(""+crt)
                 }).then((resp4) => {
                     userModel.find({
                         email:email
