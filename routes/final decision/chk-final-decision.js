@@ -13,6 +13,9 @@ const chkFinalDecision = (req, res) => {
             level: response[0].currentLevel
         }).then((rep1) => {
             console.log("rep1 "+rep1);
+            if(response[0].currentLevel === '0'){
+                res.send('Yes');
+            }
             if(rep1.length === 0){
                 res.send('No');
             }
