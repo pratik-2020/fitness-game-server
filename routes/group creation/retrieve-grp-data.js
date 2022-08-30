@@ -6,13 +6,13 @@ const retGrpData = (req, res) => {
         grpid: grpid
     }).then((response) => {
         if(response.length === 0){
-            res.send('There is no such group id');
+            console.log('There is no such group id');
         }
         else{
             res.send(response);
         }
     }).catch((er) => {
-        res.send(er.message);
+        console.log(er.message);
     })
 }
 
