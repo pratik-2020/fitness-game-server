@@ -9,6 +9,8 @@ const addFinalDecision = (req, res) => {
     userModel.find({
         email: email
     }).then((rep1) => {
+        console.log('Rep1');
+        console.log(rep1);
         groupModel.find({
             grpid: rep1[0].grpid
         }).then((response) => {
@@ -37,6 +39,8 @@ const addFinalDecision = (req, res) => {
             console.log(er);
             console.log(er);
         })
+    }).catch((er3) => {
+        console.log(er3);
     })
 }
 
