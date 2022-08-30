@@ -17,7 +17,7 @@ const addFinalDecision = (req, res) => {
                 if(err){
                     console.log('Er1');
                     console.log(err);
-                    res.send(err);
+                    console.log(err);
                 }
                 else{
                     res.send('Decision added');
@@ -26,12 +26,11 @@ const addFinalDecision = (req, res) => {
         }
         else{
             console.log('Grp DNE');
-            res.send('Group does not exist');
         }
     }).catch((er) => {
         console.log('Er2');
         console.log(er);
-        res.send(er);
+        console.log(er);
     })
 }
 
