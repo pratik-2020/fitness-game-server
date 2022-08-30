@@ -51,6 +51,7 @@ const updateStepsPoints = (req, res) => {
                     }).then((resp5) => {
                         console.log('resp5');
                         console.log(resp5);
+                        console.log(email);
                         userModel.updateOne({
                             email:email
                         }, {
