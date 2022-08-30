@@ -49,6 +49,8 @@ const updateStepsPoints = (req, res) => {
                     userModel.find({
                         email:email
                     }).then((resp5) => {
+                        console.log('resp5');
+                        console.log(resp5);
                         userModel.updateOne({
                             email:email
                         }, {
