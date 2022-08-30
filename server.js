@@ -52,6 +52,7 @@ const retrieveVote = require('./routes/Vote/retrieve-vote');
 const addFinalDecision = require('./routes/final decision/addfinaldecision');
 const updateStepsPoints = require('./routes/garden store/update-points-steps');
 const retrieveGroupVote = require('./routes/Vote/retrieve-group-vote');
+const retvt = require('./routes/Vote/retvt');
 app.use(express.json());
 app.use(cors({
     origin: '*',
@@ -456,6 +457,9 @@ app.get('/steps', async (req, res) => {
 app.get('/leaderboard',(req, res) => {
     leaderBoard(req, res);
 });
+app.post('/retvt', (req, res) => {
+    retvt(req, res);
+})
 app.post('/retvote', (req,res) => {
     retrieveVote(req, res);
 });

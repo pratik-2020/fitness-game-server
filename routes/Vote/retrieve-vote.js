@@ -4,7 +4,6 @@ const retrieveVote = (req, res) => {
     const email = req.body.email;
     const level = req.body.level;
 
-
     voteModel.find({
         email:email,
         level:level

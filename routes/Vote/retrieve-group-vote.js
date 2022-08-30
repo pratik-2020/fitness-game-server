@@ -5,6 +5,8 @@ const retrieveGroupVote = (req, res) => {
     groupModel.find({
         grpid: grpid
     }).then((resp) => {
+        console.log('Reps1');
+        console.log(resp);
         if(resp.length > 0){
             let f = [];
             resp[0].users.map((e,key) => {
@@ -16,7 +18,7 @@ const retrieveGroupVote = (req, res) => {
                 grpid: grpid,
                 level: resp[0].currentLevel
             }).then((rep1) => {
-                if(lep1.length === f.length){
+                if(rep1.length === f.length){
                     res.send('Yes');
                 }
                 else{

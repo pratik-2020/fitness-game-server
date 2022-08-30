@@ -12,6 +12,10 @@ const voteSchema = mongoose.Schema({
     level:{
         type: String,
         required: true
+    },
+    grpid: {
+        type: String,
+        required: true
     }
 });
 

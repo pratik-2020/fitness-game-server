@@ -16,6 +16,7 @@ const addVote = (req, res) => {
             votem.email = email;
             votem.vote = vote;
             votem.level = resp[0].currentLevel;
+            votem.grpid = resp[0].grpid;
             votem.save((err, data) => {
                 if(err){
                     console.log(err);
