@@ -66,7 +66,7 @@ const updateStepsPoints = (req, res) => {
                                 grpid:grpid,
                                 level:resp1[0].currentLevel
                             }).then((resp7) => {
-                                if(parseInt(resp7[0].point) <= steps){
+                                if(resp7.length > 0 &&  parseInt(resp7[0].point) <= steps){
                                     earnatrophy.updateOne({
                                         grpid:grpid,
                                         level:resp1[0].currentLevel
