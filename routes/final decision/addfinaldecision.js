@@ -7,22 +7,30 @@ const addFinalDecision = (req, res) => {
     groupModel.find({
         grpid: grpid
     }).then((response) => {
-        console.log(response);
-        console.log(grpid);
-        let finalm = new finaldecisionModel();
-        finalm.grpid = grpid;
-        finalm.decision = decision;
-        finalm.description = description;
-        finalm.level = response[0].currentLevel;
-        finalm.save((err, data) => {
-            if(err){
-                res.send(err);
-            }
-            else{
-                res.send('Decision added');
-            }
-        })
+        if(response.length > 0){
+            let finalm = new finaldecisionModel();
+            finalm.grpid = grpid;
+            finalm.level = response[0].currentLevel;
+            finalm.decision = decision;
+            finalm.description = description;
+            finalm.save((err, data) => {
+                if(err){
+                    console.log('Er1');
+                    console.log(err);
+                    res.send(err);
+                }
+                else{
+                    res.send('Decision added');
+                }
+            })
+        }
+        else{
+            console.log('Grp DNE');
+            res.send('Group does not exist');
+        }
     }).catch((er) => {
+        console.log('Er2');
+        console.log(er);
         res.send(er);
     })
 }
