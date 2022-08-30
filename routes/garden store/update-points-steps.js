@@ -24,9 +24,9 @@ const updateStepsPoints = (req, res) => {
             grpid:grpid,
             admin:resp1[0].admin,
             weekGoal: resp1[0].weekGoal,
-            points:(resp1[0].points+points),
+            points:(parseInt(""+resp1[0].points)+parseInt(""+points)),
             stat: resp1[0].stat,
-            steps: ""+(parseInt(resp1[0].steps) + steps),
+            steps: ""+(parseInt(resp1[0].steps) + parseInt(""+steps)),
             session: resp1[0].session
         }).then((resp2) => {
             gamesessionModel.find({
@@ -41,8 +41,8 @@ const updateStepsPoints = (req, res) => {
                     grpid: grpid,
                     week_start_date:resp3[0].week_start_date,
                     week_goal: resp3[0].week_goal,
-                    total_achieved_steps:(resp3[0].total_achieved_steps+steps),
-                    total_points:resp3[0].total_points+points,
+                    total_achieved_steps:(parseInt(""+resp3[0].total_achieved_steps)+parseInt(""+steps)),
+                    total_points:(parseInt(""+resp3[0].total_points)+parseInt(""+points)),
                     individual_contribution:resp3[0].individual_contribution,
                     current_checkpoint:(""+crt)
                 }).then((resp4) => {
@@ -59,8 +59,8 @@ const updateStepsPoints = (req, res) => {
                             password:resp5[0].password,
                             email:email,
                             goals:resp5[0].goals,
-                            steps:(resp5[0].steps + steps),
-                            point: ""+(parseInt(resp5[0].point) + points)
+                            steps:(parseInt(""+resp5[0].steps) + parseInt(""+steps)),
+                            point: ""+(parseInt(resp5[0].point) + parseInt(""+points))
                         }).then((resp6) => {
                             earnatrophy.find({
                                 grpid:grpid,
