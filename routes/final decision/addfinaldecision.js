@@ -27,7 +27,7 @@ const addFinalDecision = (req, res) => {
                         console.log(err);
                     }
                     else{
-                        res.send('Decision added');
+                        return res.send('Decision added');
                     }
                 })
             }

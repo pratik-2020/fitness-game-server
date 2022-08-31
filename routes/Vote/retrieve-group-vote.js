@@ -37,3 +37,4 @@ const retrieveGroupVote = (req, res) => {
 }
 
 module.exports = retrieveGroupVote;
+
