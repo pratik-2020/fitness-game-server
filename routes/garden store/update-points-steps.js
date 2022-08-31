@@ -12,7 +12,7 @@ const updateStepsPoints = (req, res) => {
         grpid: grpid
     }).then((resp1) => {
         let crt = parseInt(resp1[0].currentLevel);
-        if(resp1[0].steps + steps >= resp1[0].weekGoal){
+        if(parseInt(""+resp1[0].steps) + parseInt(""+steps) >= parseInt(""+resp1[0].weekGoal)){
             crt = crt + 1;
         }
         groupModel.updateOne({
